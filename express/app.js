@@ -24,13 +24,16 @@ var logger = require('morgan');
 const bodyParser = require('body-parser')
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var users = require('./routes/users');
 var lampes = require('./routes/lampes');
 var prises = require('./routes/prises');
 var patientOne = require('./routes/patientOne');
 var patientTwo = require('./routes/patientTwo');
 var operation = require('./routes/operation');
 var reserve = require('./routes/reserve');
+var alerte = require('./routes/alerte');
+var led = require('./routes/led');
+var validate = require('./routes/validate');
 
 
 var app = express();
@@ -38,11 +41,11 @@ app.use(cors());
 
 
 const client = new Client({
-    host : "localhost",
+    host : "10.3.141.1",
     user : "postgres",
     port : 5432,
-    password : "Isen44N",
-    database : "campusConnecteFinal"
+    password : "qwisenconnecte",
+    database : "campus_connecte"
 });
 
 client.connect();
@@ -63,36 +66,40 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.get('/api/users', (req, res) => {
+    users.getValues(req, res, client);
+});
 
 app.get('/api/lampes', cors(corsOptions), (req, res) => {
-  console.log("call lampes");
   lampes.getValues(req, res, client);
 });
 
 app.get('/api/prises', cors(corsOptions), (req, res) => {
-    console.log("call prises");
     prises.getValues(req, res, client);
 });
 
 app.get('/api/patientOne', cors(corsOptions), (req, res) => {
-    console.log("call vitals patient 1");
     patientOne.getValues(req, res, client);
 });
 
 app.get('/api/patientTwo', cors(corsOptions), (req, res) => {
-    console.log("call vitals patient 2");
     patientTwo.getValues(req, res, client);
 });
 
 app.get('/api/operation', cors(corsOptions), (req, res) => {
-    console.log("call prises");
     operation.getValues(req, res, client);
 });
 
 app.get('/api/reserve', cors(corsOptions), (req, res) => {
-    console.log("call prises");
     reserve.getValues(req, res, client);
+});
+
+app.get('/api/alerte', cors(corsOptions), (req, res) => {
+    alerte.getValues(req, res, client);
+});
+
+app.get('/api/led', cors(corsOptions), (req, res) => {
+    led.getValues(req, res, client);
 });
 
 
@@ -100,13 +107,8 @@ app.get('/api/reserve', cors(corsOptions), (req, res) => {
 app.use(express.json());
 
 app.post('/api/lampes',  (req, res) => {
-        //res.render('index', { title: 'Express' });
-        console.log("call write");
-        console.log(req.body);
-        console.log(req.body.id);
-        console.log(req.body.valeur);
 
-        mqttClient.publish('hopital/0',`${req.body.channel},${req.body.valeur}`, {qos:2, retain: false}, (error)=>{
+        mqttClient.publish('hopital/radio',`${req.body.channel},${req.body.valeur}`, {qos:2, retain: false}, (error)=>{
             if (error){
                 console.log(error)
             }
@@ -123,13 +125,134 @@ app.post('/api/lampes',  (req, res) => {
                         console.log('SELECT pool.query():', res);
                     }
                 });
-        //mqtt
+
+        res.json('good');
+    }
+);
+
+app.post('/api/alertes',  (req, res) => {
+
+
+        client.query('Delete from \"Alerte\" WHERE \"capteurid\" = $1 ;', [req.body.capteurid], (err, res) => {
+            if (err) {
+                console.log('there was an error');
+                console.log('SELECT pool.query():', err);
+            }
+
+            if (res) {
+                console.log('It works');
+                console.log('SELECT pool.query():', res);
+            }
+        });
 
         res.json('good');
     }
 
-    //const lampe = req
 );
+
+app.post('/api/led',  (req, res) => {
+        topic = 'hopital/' + `${req.body.raspberryId}`;
+        console.log('topic :' + topic);
+
+
+    mqttClient.publish(topic,`${req.body.channel},0`, {qos:2, retain: false}, (error)=>{
+        if (error){
+            console.log(error)
+        }
+    });
+        client.query('UPDATE \"Capteurs\" SET valeur = $1 WHERE id = $2 ;', [req.body.valeur, req.body.id], (err, res) => {
+            if (err) {
+                console.log('there was an error');
+                console.log('SELECT pool.query():', err);
+            }
+
+            if (res) {
+                console.log('It works efface');
+                console.log('SELECT pool.query():', res);
+            }
+        });
+
+        res.json('good');
+    }
+);
+
+app.post('/api/deleteUser',  (req, res) => {
+
+
+        mqttClient.publish('hopital/0/fingerprint/delete', `${req.body.id}`, {qos:2, retain: false}, (error)=>{
+            if (error){
+                console.log(error)
+            }
+        });
+
+    client.query('Delete from \"EventsFingerprint\" WHERE \"idutilisateur\" = $1 ;', [req.body.id], (err, res) => {
+        if (err) {
+            console.log('there was an error');
+            console.log('SELECT pool.query():', err);
+        }
+
+        if (res) {
+            console.log('User supprimé');
+            console.log('SELECT pool.query():', res);
+        }
+    });
+
+
+    client.query('Delete from \"Utilisateurs\" WHERE \"id\" = $1 ;', [req.body.id], (err, res) => {
+        if (err) {
+            console.log('there was an error');
+            console.log('SELECT pool.query():', err);
+        }
+
+        if (res) {
+            console.log('User supprimé');
+            console.log('SELECT pool.query():', res);
+        }
+    });
+
+    res.json('good');
+}
+
+);
+
+app.post('/api/users',  (req, res) => {
+
+    mqttClient.publish('hopital/0/fingerprint/enroll', `${req.body.id}`, {qos:2, retain: false}, (error)=>{
+        if (error){
+            console.log(error)
+        }
+    });
+        client.query('UPDATE \"Utilisateurs\" SET empreinte = $1 WHERE id = $2 ;', [req.body.empreinte, req.body.id], (err, res) => {
+            if (err) {
+                console.log('there was an error');
+                console.log('SELECT pool.query():', err);
+            }
+
+            if (res) {
+                console.log('User supprimé');
+                console.log('SELECT pool.query():', res);
+            }
+        });
+
+        res.json('good');
+    }
+
+);
+
+app.post('/api/read',  (req, res) => {
+
+        mqttClient.publish('hopital/0/fingerprint/read', `read`, {qos:2, retain: false}, (error)=>{
+            if (error){
+                console.log(error)
+            }
+        });
+        res.json('good');
+    }
+);
+
+app.get('/api/connexion', cors(corsOptions), (req, res) => {
+    validate.getValues(req, res, client);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

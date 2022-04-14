@@ -5,7 +5,7 @@ const {rows} = require("pg/lib/defaults");
 
 async function getValues(req, res, pgclient) {
     let result = {};
-    result = await pgclient.query('Select valeur, id, type, channel, nom from \"Capteurs\" where (\"pieceId\") = 6 except Select valeur, id, type, channel, nom from \"Capteurs\" where (type = \'prise\') or (type = \'lampe\') order by id asc');
+    result = await pgclient.query('Select valeur, id, type, channel, nom from \"Capteurs\" where (\"pieceId\") = 6 except Select valeur, id, type, channel, nom from \"Capteurs\" where (type = \'prise\') or (type = \'lampe\') or (type = \'bool\') order by id asc');
     res.json(JSON.stringify(result.rows));
 }
 
