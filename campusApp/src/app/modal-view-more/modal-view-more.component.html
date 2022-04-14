@@ -1,0 +1,55 @@
+<body>
+  <div class="modal-header">
+    <h4 class="modal-title">{{my_modal_title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body"*ngIf="my_modal_number == 1">
+    <div class="row row-col-4">
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=6"
+                               width="450" height="200" frameborder="0"></iframe></div>
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=33"
+                               width="450" height="200" frameborder="0"></iframe></div>
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=46"
+                               width="450" height="200" frameborder="0"></iframe></div>
+    </div>
+  </div>
+  <div class="modal-body"*ngIf="my_modal_number == 2">
+    <div class="row row-col-4">
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=29"
+                               width="450" height="200" frameborder="0"></iframe></div>
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=37"
+                               width="450" height="200" frameborder="0"></iframe></div>
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=31"
+                               width="450" height="200" frameborder="0"></iframe></div>
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=36"
+                               width="450" height="200" frameborder="0"></iframe></div>
+    </div>
+  </div>
+  <div class="modal-body"*ngIf="my_modal_number == 3">
+    <div class="row row-col-4">
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=34"
+                               width="450" height="200" frameborder="0"></iframe></div>
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=32"
+                               width="450" height="200" frameborder="0"></iframe></div>
+
+    </div>
+  </div>
+  <div class="modal-body"*ngIf="my_modal_number == 4">
+    <div class="row row-col-4">
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=8"
+                               width="450" height="200" frameborder="0"></iframe></div>
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=4"
+                               width="450" height="200" frameborder="0"></iframe></div>
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=35"
+                               width="450" height="200" frameborder="0"></iframe></div>
+      <div class="col"><iframe src="http://10.3.141.1:3000/d-solo/5zXGYXigz/hopital-connecte?orgId=1&from=now-24h&to=now&theme=light&panelId=45"
+                               width="450" height="200" frameborder="0"></iframe></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+</body>
+

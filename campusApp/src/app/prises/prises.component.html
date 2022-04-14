@@ -1,0 +1,10 @@
+<div class="col-xs-12">
+  <h2 class="d-flex justify-content-center">Contôle des prises</h2>
+  <div class="row row-cols-4">
+    <app-appareils class="col" *ngFor="let prise of this.prises; let i = index"
+                   [indexOfAppareil]="i"
+                   [appareilName]="prise.nom"
+                   [appareilValeur]="prise.valeur"
+                   [id]="prise.id"></app-appareils>
+  </div>
+</div>
