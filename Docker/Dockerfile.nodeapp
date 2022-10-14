@@ -1,0 +1,15 @@
+FROM node:16
+
+RUN mkdir -p /usr/src/app
+
+COPY  campusApp/. /usr/src/app
+WORKDIR /usr/src/app
+
+RUN npm install -g @angular/cli
+# RUN npm install node
+RUN npm audit fix --force
+
+EXPOSE 4200
+
+
+CMD ["ng","serve","--host","0.0.0.0"]
