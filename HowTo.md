@@ -11,10 +11,6 @@ sudo usermod -aG docker $USER
 ```
 ## Create images
 ### Create backend image
-Retrieve APP on github (Front and Backend) :
-```
-git clone -b master https://github.com/willinho10/campus.git
-```
 Create docker images (if doesn't exists yet) /!\ docker build command create an image on the same architecture as the host
 ==> Use docker buildx with qemu to emulate arm architecture (if want to run on rpy) : https://medium.com/@artur.klauser/building-multi-architecture-docker-images-with-buildx-27d80f7e2408
 
