@@ -1,5 +1,6 @@
 const mqtt = require('mqtt')
-const host = '10.3.141.1'
+// const host = '10.3.141.1'
+const host = '10.30.50.172'
 const port = '1883'
 const clientId = 'appliWeb'
 const connectUrl = `mqtt://${host}:${port}`
