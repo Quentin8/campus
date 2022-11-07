@@ -19,7 +19,7 @@ export class AlertesComponent implements OnInit {
       creation : ''
     }
   ];
-  urlAlerte = 'http://localhost:3000/api/alerte';
+  urlAlerte = 'http://10.30.50.201:3000/api/alerte';
 
 
   public leds = [
@@ -31,7 +31,7 @@ export class AlertesComponent implements OnInit {
       raspberryId : -1
     }
   ];
-  urlLed = 'http://localhost:3000/api/led';
+  urlLed = 'http://10.30.50.201:3000/api/led';
 
   new : number;
 
@@ -114,7 +114,7 @@ export class AlertesComponent implements OnInit {
     for(let led of this.leds){
       if (led.id == capteurId){
         led.valeur = 'off';
-        this.httpClient.post<any>('http://localhost:3000/api/led', led).subscribe({
+        this.httpClient.post<any>('http://10.30.50.201:3000/api/led', led).subscribe({
           next: data => {
             console.log("GOOD donnée envoyée vers led");
             console.log(led);
@@ -127,7 +127,7 @@ export class AlertesComponent implements OnInit {
     }
     for(let alerte of this.alertes){
       if (alerte.capteurid == capteurId){
-        this.httpClient.post<any>('http://localhost:3000/api/alertes', alerte).subscribe({
+        this.httpClient.post<any>('http://10.30.50.201:3000/api/alertes', alerte).subscribe({
           next: data => {
             console.log("GOOD donnée envoyée");
             this.alertes = [

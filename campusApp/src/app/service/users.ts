@@ -57,7 +57,7 @@ export class UsersService {
     this.users[id].empreinte = true;
     const body = JSON.stringify(this.users[id]);
     console.log(body);
-    this.httpClient.post<any>('http://localhost:3000/api/users', this.users[id]).subscribe({
+    this.httpClient.post<any>('http://10.30.50.201:3000/api/users', this.users[id]).subscribe({
       next: data => {
         console.log("GOOD donnée envoyée");
       },
@@ -72,7 +72,7 @@ export class UsersService {
 
     const body = JSON.stringify(this.users[id]);
     console.log(body);
-    this.httpClient.post<any>('http://localhost:3000/api/deleteUser', this.users[id]).subscribe({
+    this.httpClient.post<any>('http://10.30.50.201:3000/api/deleteUser', this.users[id]).subscribe({
       next: data => {
         console.log("GOOD donnée envoyée");
         this.users = [
@@ -83,7 +83,7 @@ export class UsersService {
           }
         ];
 
-        this.onObtenir('http://localhost:3000/api/users');
+        this.onObtenir('http://10.30.50.201:3000/api/users');
 
       },
       error: error => {

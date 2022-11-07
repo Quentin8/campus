@@ -14,7 +14,7 @@ export class LampesComponent implements OnInit {
 
   lampes =  new Array;
   appareilSubscription : Subscription;
-  url = 'http://localhost:3000/api/lampes';
+  url = 'http://10.30.50.201:3000/api/lampes';
 
 
   constructor(private httpClient: HttpClient,
@@ -38,7 +38,7 @@ export class LampesComponent implements OnInit {
 
 
     /*this.httpClient
-      .get<any>('http://localhost:3000/api/temperatures')
+      .get<any>('http://10.30.50.201:3000/api/temperatures')
       .subscribe(
         (response)=> {
           console.log(JSON.parse(response));
@@ -66,7 +66,7 @@ export class LampesComponent implements OnInit {
     this.appareils[id].valeur = 'on';
     const body = JSON.stringify(this.appareils[id]);
     console.log(body);
-    this.httpClient.post<any>('http://localhost:3000/api/appareils', this.appareils[id]).subscribe({
+    this.httpClient.post<any>('http://10.30.50.201:3000/api/appareils', this.appareils[id]).subscribe({
       next: data => {
         console.log("GOOD donnée envoyée");
       },
@@ -81,8 +81,8 @@ export class LampesComponent implements OnInit {
     this.appareils[id].valeur = 'off';
     const body = JSON.stringify(this.appareils[id]);
     console.log(body);
-    //this.httpClient.post('http://localhost:3000/api/appareils', body);
-    this.httpClient.post<any>('http://localhost:3000/api/appareils', this.appareils[id]).subscribe({
+    //this.httpClient.post('http://10.30.50.201:3000/api/appareils', body);
+    this.httpClient.post<any>('http://10.30.50.201:3000/api/appareils', this.appareils[id]).subscribe({
       next: data => {
         console.log("GOOD donnée envoyée");
       },

@@ -15,7 +15,7 @@ export class EmpreinteComponent implements OnInit {
 
   empreintes =  new Array;
   userSubscription : Subscription;
-  url = 'http://localhost:3000/api/users';
+  url = 'http://10.30.50.201:3000/api/users';
 
 
   constructor(private httpClient: HttpClient,

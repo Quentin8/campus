@@ -22,7 +22,7 @@ export class EspacePersoComponent implements OnInit {
   }
 
   onEmpreinte(){
-      this.httpClient.post<any>('http://localhost:3000/api/read', '').subscribe({
+      this.httpClient.post<any>('http://10.30.50.201:3000/api/read', '').subscribe({
         next: data => {
           console.log("GOOD donnée envoyée");
         },

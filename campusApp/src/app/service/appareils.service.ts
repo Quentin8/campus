@@ -68,7 +68,7 @@ export class AppareilsServices{
     this.appareils[id].valeur = 'on';
     const body = JSON.stringify(this.appareils[id]);
     console.log(body);
-    this.httpClient.post<any>('http://localhost:3000/api/lampes', this.appareils[id]).subscribe({
+    this.httpClient.post<any>('http://10.30.50.201:3000/api/lampes', this.appareils[id]).subscribe({
       next: data => {
         console.log("GOOD donnée envoyée");
       },
@@ -84,8 +84,8 @@ export class AppareilsServices{
     this.appareils[id].valeur = 'off';
     const body = JSON.stringify(this.appareils[id]);
     console.log(body);
-    //this.httpClient.post('http://localhost:3000/api/lampes', body);
-    this.httpClient.post<any>('http://localhost:3000/api/lampes', this.appareils[id]).subscribe({
+    //this.httpClient.post('http://10.30.50.201:3000/api/lampes', body);
+    this.httpClient.post<any>('http://10.30.50.201:3000/api/lampes', this.appareils[id]).subscribe({
       next: data => {
         console.log("GOOD donnée envoyée");
       },

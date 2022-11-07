@@ -62,7 +62,7 @@ export class SignupComponent implements OnInit {
 
   onObtenir(){
     this.httpClient
-      .get<any>('http://localhost:3000/api/connexion')
+      .get<any>('http://10.30.50.201:3000/api/connexion')
       .subscribe(
         (response)=> {
           let i = 0;

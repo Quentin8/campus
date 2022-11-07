@@ -14,7 +14,7 @@ export class PrisesComponent implements OnInit {
 
   prises =  new Array;
   appareilSubscription : Subscription;
-  url = 'http://localhost:3000/api/prises';
+  url = 'http://10.30.50.201:3000/api/prises';
 
 
   constructor(private httpClient: HttpClient,
