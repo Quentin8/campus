@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
       id: -1
     }
   ];
-  urlOne = 'http://localhost:3000/api/patientOne'
+  urlOne = 'http://10.30.50.201:3000/api/patientOne'
 
   public patientTwo = [
     {
@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
       id: -1
     }
   ];
-  urlTwo = 'http://localhost:3000/api/patientTwo'
+  urlTwo = 'http://10.30.50.201:3000/api/patientTwo'
 
   public operation = [
     {
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
       id: -1
     }
   ];
-  urlOperation = 'http://localhost:3000/api/operation'
+  urlOperation = 'http://10.30.50.201:3000/api/operation'
 
 
   public reserve = [
@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
       id: -1
     }
   ];
-  urlReserve = 'http://localhost:3000/api/reserve';
+  urlReserve = 'http://10.30.50.201:3000/api/reserve';
 
   public alertes = [
     {
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
       urgent : ''
     }
   ];
-  urlAlerte = 'http://localhost:3000/api/alerte';
+  urlAlerte = 'http://10.30.50.201:3000/api/alerte';
 
 
   public leds = [
@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
       urgent : ''
     }
   ];
-  urlLed = 'http://localhost:3000/api/led';
+  urlLed = 'http://10.30.50.201:3000/api/led';
 
   modalNumber : number;
 
