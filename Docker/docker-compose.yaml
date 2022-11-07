@@ -1,12 +1,12 @@
 version: '3'
 services:
   express: # Working
-    image: campusbackend # custom image previously built
+    image: campusbackend:1.0.0 # custom image previously built
     container_name: campusbackend
     ports:
       - 3000:3000
   front: # Working
-    image: campusfront # custom image previously built
+    image: campusfront:1.0.0 # custom image previously built
     container_name: campusfront
     ports:
       - 4200:4200
