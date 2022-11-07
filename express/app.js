@@ -42,7 +42,8 @@ app.use(cors());
 
 
 const client = new Client({
-    host : "10.3.141.1",
+    // host : "10.3.141.1",
+    host : "10.30.50.172",
     user : "postgres",
     port : 5432,
     password : "qwisenconnecte",
